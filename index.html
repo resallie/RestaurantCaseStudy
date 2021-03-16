@@ -3,6 +3,7 @@
 
 
 <div id=parent>
+<svg viewbox = "0 0 100 100" width="100%" height="12.5%" id=title></svg>
 <svg viewbox="0 0 100 100" width=40% height=75% id ="frame" style="float:left"> 
 </svg>
 <svg viewbox="0 0 100 100"id="frame2" width=60% height=75% style="float:left"></svg>
@@ -33,11 +34,11 @@ var xScale = d3.scaleBand()
     
 const yScale = d3.scaleLinear()
       .range([height, 0])
-      .domain([0, 45000000]);
+      .domain([0, 40000000]);
 
 const yScale2 = d3.scaleLinear()
       .range([height, 0])
-      .domain([0, 1500000]);
+      .domain([0, 1000000]);
 
 
 function createMap(states, cities) {
@@ -65,6 +66,39 @@ function createMap(states, cities) {
 
   var svg2 = d3.select("#frame2")
 
+  var titleDiv = d3.select("#title")
+
+  titleDiv.append("text")
+  .attr("x", 50)
+  .attr("y", 30)
+  .style('text-anchor', "middle")
+  .style("font-size",30)
+  .style("font-weight", "bold")
+  .text("Case Study: Independent Restaurants")
+
+  titleDiv.append("text")
+  .attr("x", 50)
+  .attr("y", 60)
+  .style('text-anchor', 'middle')
+  .style("font-size", 15)
+  .style("word-break", "break-all")
+  .text("How has Covid-19 impacted the United States' top restaurants? Using data collected from Restaurant Business Magazine's")
+  
+  titleDiv.append("text")
+  .attr("x", 50)
+  .attr("y", 80)
+  .style('text-anchor', 'middle')
+  .style("font-size", 15)
+  .style("word-break", "break-all")
+  .text("Top 100 Independents, the following viz was created. Explore the restaurant map to see how America's")
+
+  titleDiv.append("text")
+  .attr("x", 50)
+  .attr("y", 100)
+  .style('text-anchor', 'middle')
+  .style("font-size", 15)
+  .style("word-break", "break-all")
+  .text("most successful restaurants have been impacted by the pandemic in terms of both sales and meals served.")
   //var tooltip = svg.append('div')
   //.style('opacity', 0)
 
@@ -102,7 +136,7 @@ function createMap(states, cities) {
       .data(cities)
       .enter()
       .append('circle')
-      .attr('r', 1.5)
+      .attr('r', 1.25)
       .attr('cx', d => proj([d.x, d.y])[0])
       .attr('cy', d => proj([d.x, d.y])[1])
       .attr('stroke-width', 0.25)
@@ -233,7 +267,7 @@ function createMap(states, cities) {
        .style('font-size', 3)
        .style('font-family', "sans-serif")
        .style('font-weight', 'bolder')
-       .text('Profits')
+       .text('Sales')
 
        title1.append("tspan")
        .style('font-weight', 'lighter')
@@ -256,7 +290,7 @@ function createMap(states, cities) {
       .style('font-size', 4)
       .style('font-family', "sans-serif")
       .style('font-weight', 'bolder')
-      .text("Select a restaurant from the map to see its profits and meals served!")
+      .text("Select a restaurant from the map to see its data!")
 
 
        function loadBars(city){
